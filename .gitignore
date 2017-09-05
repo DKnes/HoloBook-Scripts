@@ -1,0 +1,17 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs
+/WordWrapClass.cs.meta
+/UICtrl.cs.meta
+/Monster Scripts.meta
+/InteractibleManager.cs.meta
+/Interactible.cs.meta
+/IndicatorCtrl.cs.meta
+/HandsManager.cs.meta
+/GestureManager.cs.meta
+/GestureAction.cs.meta
+/ClipBook.cs.meta
+/BookContentManager.cs.meta
+/Monster Scripts
