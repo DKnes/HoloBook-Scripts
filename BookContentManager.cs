@@ -42,7 +42,7 @@ public class BookContentManager : Singleton<BookContentManager> {
         textHandler = new HandyTextHandler(bookContent, charOneLine, lineOnePage);
         leftPageNum = 0;
         rightPageNum = 1;
-        Debug.Log(textHandler.numOfPages);
+        //Debug.Log(textHandler.numOfPages);
     }
     /// <summary>
     /// 暂时禁用，除ClipBook中的Start()

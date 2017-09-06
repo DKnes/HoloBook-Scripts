@@ -43,10 +43,12 @@ public class UIButtonVoiceHintManager :Singleton<UIButtonVoiceHintManager>{
         if (uiButton.tag == "AllUIButton")
         {
             allButtonVoiceHint.SetActive(false);
+            allButtonVoiceHint.GetComponent<VoiceHint>().ResetTooltip();
         }
         else if (uiButton.tag == "OneUIButton")
         {
             oneButtonVoiceHint.SetActive(false);
+            oneButtonVoiceHint.GetComponent<VoiceHint>().ResetTooltip();
         }
 
     }

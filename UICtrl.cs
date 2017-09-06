@@ -24,8 +24,8 @@ public class UICtrl : MonoBehaviour {
         allTr = allButton.GetComponent<RectTransform>();
         initPosition = allTr.localPosition;
         oneTr = oneButton.GetComponent<RectTransform>();
-        rotateButton = GameObject.Find("Rotate");
-        moveButton = GameObject.Find("Move");
+        rotateButton = GameObject.Find("Rotate Book");
+        moveButton = GameObject.Find("Move Book");
         tagalongButton = GameObject.Find("Book Tagalong");
     }
     public void HideUIButton()
