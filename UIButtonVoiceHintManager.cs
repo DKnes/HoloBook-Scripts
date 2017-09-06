@@ -8,47 +8,50 @@ public class UIButtonVoiceHintManager :Singleton<UIButtonVoiceHintManager>{
     public GameObject oneButtonVoiceHint;
     public GameObject defaultDisableButton;
 
-    private GameObject[] UIButtons;
+    //private GameObject[] UIButtons;
 	// Use this for initialization
 	void Start () {
-        defaultDisableButton.SetActive(true);
-        UIButtons = GameObject.FindGameObjectsWithTag("AllUIButton");
-        foreach (GameObject obj in UIButtons)
-        {
-            obj.AddComponent<UIVoiceCommandHelper>();
-        }
-        UIButtons = GameObject.FindGameObjectsWithTag("OneUIButton");
-        foreach (GameObject obj in UIButtons)
-        {
-            obj.AddComponent<UIVoiceCommandHelper>();
-        }
-        defaultDisableButton.SetActive(false);
+        //defaultDisableButton.SetActive(true);
+        //UIButtons = GameObject.FindGameObjectsWithTag("AllUIButton");
+        //foreach (GameObject obj in UIButtons)
+        //{
+        //    UIVoiceCommandHelper temp=obj.AddComponent<UIVoiceCommandHelper>();
+        //}
+        //UIButtons = GameObject.FindGameObjectsWithTag("OneUIButton");
+        //foreach (GameObject obj in UIButtons)
+        //{
+        //    obj.AddComponent<UIVoiceCommandHelper>();
+        //}
+        //defaultDisableButton.SetActive(false);
         
 	}
-	public void ShowVoiceHint(GameObject uiButton)
+	public void ShowVoiceHint(string tag,string name)
     {
-        if(uiButton.tag=="AllUIButton")
+        
+        if(tag=="AllUIButton")
         {
-            allButtonVoiceHint.GetComponent<VoiceHint>().userMessage.text = "Say: \"" + uiButton.name + "\"";
             allButtonVoiceHint.SetActive(true);
+            allButtonVoiceHint.GetComponent<VoiceHint>().userMessage.text = "Say: \"" + name + "\"";
+            
         }
-        else if(uiButton.tag=="OneUIButton")
+        else if(tag=="OneUIButton")
         {
-            oneButtonVoiceHint.GetComponent<VoiceHint>().userMessage.text= "Say: \"" + uiButton.name + "\"";
             oneButtonVoiceHint.SetActive(true);
+            oneButtonVoiceHint.GetComponent<VoiceHint>().userMessage.text= "Say: \"" + name + "\"";
+            
         }
     }
-    public void QuitVoiceHint(GameObject uiButton)
+    public void QuitVoiceHint(string tag)
     {
-        if (uiButton.tag == "AllUIButton")
+        if (tag == "AllUIButton")
         {
-            allButtonVoiceHint.SetActive(false);
             allButtonVoiceHint.GetComponent<VoiceHint>().ResetTooltip();
+            allButtonVoiceHint.SetActive(false);
         }
-        else if (uiButton.tag == "OneUIButton")
+        else if (tag == "OneUIButton")
         {
-            oneButtonVoiceHint.SetActive(false);
             oneButtonVoiceHint.GetComponent<VoiceHint>().ResetTooltip();
+            oneButtonVoiceHint.SetActive(false);
         }
 
     }
