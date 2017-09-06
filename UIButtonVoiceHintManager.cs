@@ -8,23 +8,23 @@ public class UIButtonVoiceHintManager :Singleton<UIButtonVoiceHintManager>{
     public GameObject oneButtonVoiceHint;
     public GameObject defaultDisableButton;
 
-    //private GameObject[] UIButtons;
+    private GameObject[] UIButtons;
 	// Use this for initialization
 	void Start () {
-        //defaultDisableButton.SetActive(true);
-        //UIButtons = GameObject.FindGameObjectsWithTag("AllUIButton");
-        //foreach (GameObject obj in UIButtons)
-        //{
-        //    UIVoiceCommandHelper temp=obj.AddComponent<UIVoiceCommandHelper>();
-        //}
-        //UIButtons = GameObject.FindGameObjectsWithTag("OneUIButton");
-        //foreach (GameObject obj in UIButtons)
-        //{
-        //    obj.AddComponent<UIVoiceCommandHelper>();
-        //}
-        //defaultDisableButton.SetActive(false);
-        
-	}
+        defaultDisableButton.SetActive(true);
+        UIButtons = GameObject.FindGameObjectsWithTag("AllUIButton");
+        foreach (GameObject obj in UIButtons)
+        {
+            UIVoiceCommandHelper temp = obj.AddComponent<UIVoiceCommandHelper>();
+        }
+        UIButtons = GameObject.FindGameObjectsWithTag("OneUIButton");
+        foreach (GameObject obj in UIButtons)
+        {
+            obj.AddComponent<UIVoiceCommandHelper>();
+        }
+        defaultDisableButton.SetActive(false);
+
+    }
 	public void ShowVoiceHint(string tag,string name)
     {
         
