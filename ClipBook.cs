@@ -28,7 +28,7 @@ public class ClipBook : MonoBehaviour {
         frontText = animatorPageFront.GetComponent<TextMesh>();
         backText = animatorPageBack.GetComponent<TextMesh>();
         sound = GetComponent<AudioSource>();
-       
+        BookContentManager.Instance.SetNewContent();
         leftText.text = BookContentManager.Instance.Page(0);
         rightText.text= BookContentManager.Instance.Page(1);
     }

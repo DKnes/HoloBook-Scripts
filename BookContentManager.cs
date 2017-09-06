@@ -26,20 +26,20 @@ public class BookContentManager : Singleton<BookContentManager> {
 
 
 
-    private string content;
-   
+    private string bookContent;
     private void Start()
     {
        
-        SetNewContent(@"D:\UnityProject\HoloApp\HoloBook\content.txt");
+        //SetNewContent(@"D:\UnityProject\HoloApp\HoloBook\content.txt");
         
     }
-    public void SetNewContent(string filePath)
+    public void SetNewContent()
     {
-        StreamReader reader = new StreamReader(filePath);
-        content = reader.ReadToEnd();
-        reader.Close();
-        textHandler = new HandyTextHandler(content, charOneLine, lineOnePage);
+        //StreamReader reader = new StreamReader(filePath);
+        //bookContent= reader.ReadToEnd();
+        //reader.Close();
+        bookContent = GetComponent<UnityEngine.UI.Text>().text;
+        textHandler = new HandyTextHandler(bookContent, charOneLine, lineOnePage);
         leftPageNum = 0;
         rightPageNum = 1;
         Debug.Log(textHandler.numOfPages);
