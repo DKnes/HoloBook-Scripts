@@ -10,6 +10,8 @@ public class UICtrl : MonoBehaviour {
     public GameObject allButton;
     public GameObject oneButton;
     public GameObject bookBillboard;
+    public GameObject allButtonVoiceHint;
+    public GameObject oneButtonVoiceHint;
 
    
     private RectTransform allTr;
@@ -98,8 +100,8 @@ public class UICtrl : MonoBehaviour {
         }
         if(!voiceHintOn)
         {
-            GameObject.Find("AllButtonVoiceHint").SetActive(false);
-            GameObject.Find("OneButtonVoiceHint").SetActive(false);
+           allButtonVoiceHint.SetActive(false);
+           oneButtonVoiceHint.SetActive(false);
         }
     }
     //Hide/Show UI animations
