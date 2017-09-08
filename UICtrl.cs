@@ -11,6 +11,7 @@ public class UICtrl : MonoBehaviour {
     public GameObject oneButton;
     public GameObject bookBillboard;
 
+   
     private RectTransform allTr;
     private RectTransform oneTr;
     private Vector3 initPosition;
@@ -18,15 +19,20 @@ public class UICtrl : MonoBehaviour {
     private GameObject moveButton;
     private GameObject tagalongButton;
     Vector3 velocity = Vector3.zero;
-    
+
+    private bool voiceHintOn = true;
+    private List<UIVoiceCommandHelper> commandHelpers=new List<UIVoiceCommandHelper>();
     private void Start()
     {
+       
         allTr = allButton.GetComponent<RectTransform>();
         initPosition = allTr.localPosition;
         oneTr = oneButton.GetComponent<RectTransform>();
         rotateButton = GameObject.Find("Rotate Book");
         moveButton = GameObject.Find("Move Book");
         tagalongButton = GameObject.Find("Book Tagalong");
+        commandHelpers.AddRange(allButton.GetComponentsInChildren<UIVoiceCommandHelper>());
+        commandHelpers.AddRange(oneButton.GetComponentsInChildren<UIVoiceCommandHelper>());
     }
     public void HideUIButton()
     {
@@ -44,34 +50,6 @@ public class UICtrl : MonoBehaviour {
         //StartCoroutine(ShowAnimation(targetPosition));
         Debug.Log("Show UI button");
     }
-    //Hide/Show UI animations
-    //These two IEnumerator functions have bugs when running on HoloLens
-    IEnumerator HideAnimation(Vector3 targetPos)
-    {
-        int counter = 0;
-        while (counter++<40)
-        {
-            
-            allTr.localPosition = Vector3.SmoothDamp(allTr.localPosition, targetPos, ref velocity, 0.3f,Mathf.Infinity,0.02f);
-            yield return new WaitForSeconds(0.02f);
-        }
-        allButton.SetActive(false);
-        oneButton.SetActive(true);
-    }
-
-    IEnumerator ShowAnimation(Vector3 targetPos)
-    {
-        allButton.SetActive(true);
-        oneButton.SetActive(false);
-        int counter = 0;
-        while (counter++ <40)
-        {
-            allTr.localPosition = Vector3.SmoothDamp(allTr.localPosition, targetPos, ref velocity, 0.3f, Mathf.Infinity, 0.02f);
-            yield return new WaitForSeconds(0.02f);
-        }
-        
-    }
-
     public void RotateControl()
     {
         if (GestureManager.Instance.ActiveRecognizer != GestureManager.Instance.NavigationRecognizer)
@@ -110,7 +88,47 @@ public class UICtrl : MonoBehaviour {
             EndManipulate();
         }
     }
+    public void VoiceHintControl()
+    {
+        voiceHintOn = !voiceHintOn;
+        
+        foreach(var helper in commandHelpers)
+        {
+            helper.enabled=voiceHintOn;
+        }
+        if(!voiceHintOn)
+        {
+            GameObject.Find("AllButtonVoiceHint").SetActive(false);
+            GameObject.Find("OneButtonVoiceHint").SetActive(false);
+        }
+    }
+    //Hide/Show UI animations
+    //These two IEnumerator functions have bugs when running on HoloLens
+    IEnumerator HideAnimation(Vector3 targetPos)
+    {
+        int counter = 0;
+        while (counter++ < 40)
+        {
 
+            allTr.localPosition = Vector3.SmoothDamp(allTr.localPosition, targetPos, ref velocity, 0.3f, Mathf.Infinity, 0.02f);
+            yield return new WaitForSeconds(0.02f);
+        }
+        allButton.SetActive(false);
+        oneButton.SetActive(true);
+    }
+
+    IEnumerator ShowAnimation(Vector3 targetPos)
+    {
+        allButton.SetActive(true);
+        oneButton.SetActive(false);
+        int counter = 0;
+        while (counter++ < 40)
+        {
+            allTr.localPosition = Vector3.SmoothDamp(allTr.localPosition, targetPos, ref velocity, 0.3f, Mathf.Infinity, 0.02f);
+            yield return new WaitForSeconds(0.02f);
+        }
+
+    }
     private void StartRotate()
     {
         GestureManager.Instance.Transition(GestureManager.Instance.NavigationRecognizer);

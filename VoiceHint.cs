@@ -15,7 +15,7 @@ public class VoiceHint : MonoBehaviour {
     {
         startingColor = userMessage.color;
     }
-
+   
     public void VoiceCommandHeard()
     {
         userMessage.color = commandHeardColor;
